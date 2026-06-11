@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#080910" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>恋爱时间胶囊</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <canvas id="fx" aria-hidden="true"></canvas>
+
+    <main class="app" id="app">
+      <section class="scene scene-loading is-active" data-scene="0">
+        <div class="glass intro-card">
+          <p class="kicker">Love Time Capsule</p>
+          <h1>正在读取我们的故事...</h1>
+          <div class="countdown glass-lite" id="countdown">
+            <div><strong>--</strong><span>天</span></div>
+            <div><strong>--</strong><span>时</span></div>
+            <div><strong>--</strong><span>分</span></div>
+            <div><strong>--</strong><span>秒</span></div>
+          </div>
+          <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+          <p class="muted" id="loadingText">把每一次心动放进时间里</p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="1">
+        <div class="scene-head">
+          <p class="kicker">Act 01</p>
+          <h2>相遇</h2>
+          <p>有些日子看起来普通，后来才知道，它们悄悄改变了一生。</p>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <section class="scene" data-scene="2">
+        <div class="scene-head compact">
+          <p class="kicker">Act 02</p>
+          <h2>回忆长廊</h2>
+          <p>左右滑动，慢慢看。</p>
+        </div>
+        <div class="gallery" id="gallery">
+          <button class="nav-btn prev" id="prevPhoto" aria-label="上一张">‹</button>
+          <figure class="photo-frame">
+            <img id="galleryImage" alt="我们的照片" />
+            <figcaption id="galleryCaption"></figcaption>
+          </figure>
+          <button class="nav-btn next" id="nextPhoto" aria-label="下一张">›</button>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="3">
+        <div class="scene-head compact">
+          <p class="kicker">Act 03</p>
+          <h2>默契测试</h2>
+          <p>答对会有一点点心动奖励。</p>
+        </div>
+        <div class="quiz glass" id="quiz"></div>
+      </section>
+
+      <section class="scene" data-scene="4">
+        <div class="scene-head compact">
+          <p class="kicker">Act 04</p>
+          <h2>记忆星空</h2>
+          <p>点亮星星，打开藏起来的小回忆。</p>
+        </div>
+        <div class="star-field" id="memoryStars">
+          <canvas id="constellation" aria-hidden="true"></canvas>
+          <div class="memory-hint glass-lite">
+            <span>20 颗星</span>
+            <strong>每一颗都藏着一句想对你说的话</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="5">
+        <div class="scene-head compact">
+          <p class="kicker">Act 05</p>
+          <h2>生日树</h2>
+          <p>从圣诞树变成只属于她的生日树。</p>
+        </div>
+        <div class="tree-stage">
+          <canvas id="birthdayTree" aria-label="旋转生日树动画"></canvas>
+          <div class="tree-title">
+            <strong>生日快乐</strong>
+            <span>Baby · August 15</span>
+          </div>
+        </div>
+        <button class="gift" id="gift" aria-label="打开礼物盒">
+          <span class="gift-lid"></span>
+          <span class="gift-box"></span>
+          <span class="gift-ribbon"></span>
+        </button>
+        <div class="gift-message glass" id="giftMessage">
+          <p>这份礼物不贵重，但里面装满了我想和你继续走下去的心。</p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="6">
+        <div class="scene-head compact">
+          <p class="kicker">Act 06</p>
+          <h2>她的专属档案</h2>
+          <p>这里不是资料，是我认真记住你的证据。</p>
+        </div>
+        <div class="profile-wall">
+          <article class="profile-card hero-profile">
+            <img src="./assets/photos/photo12.jpg" alt="她的照片" />
+            <div>
+              <span>Most Special Girl</span>
+              <strong>今天的主角</strong>
+              <p>可爱、漂亮、值得被偏爱，也值得被很认真地爱。</p>
+            </div>
+          </article>
+          <div class="profile-grid">
+            <article><span>喜欢</span><strong>库洛米</strong></article>
+            <article><span>生日</span><strong>08.15</strong></article>
+            <article><span>专属歌</span><strong>太聪明</strong></article>
+            <article><span>男朋友任务</span><strong>哄她开心</strong></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="7">
+        <div class="scene-head compact">
+          <p class="kicker">Act 07</p>
+          <h2>偏爱清单</h2>
+          <p>不是说说而已，是以后每天都要做到的事。</p>
+        </div>
+        <div class="promise-list">
+          <button class="promise-card">
+            <span>01</span>
+            <strong>永远站在你这边</strong>
+            <p>就算你有小脾气，我也先抱抱你，再慢慢讲道理。</p>
+          </button>
+          <button class="promise-card">
+            <span>02</span>
+            <strong>认真记住你喜欢的东西</strong>
+            <p>包括库洛米、喜欢的歌、想去的地方，和你随口说的小愿望。</p>
+          </button>
+          <button class="promise-card">
+            <span>03</span>
+            <strong>把普通日子过成纪念日</strong>
+            <p>不用等节日，我也想经常给你小惊喜。</p>
+          </button>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="8">
+        <div class="scene-head compact">
+          <p class="kicker">Act 08</p>
+          <h2>未来预告</h2>
+          <p>这些不是空想，是我想和你一起慢慢完成的事。</p>
+        </div>
+        <div class="future-tickets">
+          <article class="ticket">
+            <span>Ticket 01</span>
+            <strong>一起去看一场想看的电影</strong>
+            <p>买你爱吃的零食，散场以后慢慢走回去。</p>
+          </article>
+          <article class="ticket">
+            <span>Ticket 02</span>
+            <strong>一起拍一组真正好看的照片</strong>
+            <p>不是随手记录，是我想把你拍得很漂亮。</p>
+          </article>
+          <article class="ticket">
+            <span>Ticket 03</span>
+            <strong>一起过很多很多个生日</strong>
+            <p>今年是网页，明年我还要准备新的惊喜。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="9">
+        <div class="scene-head compact">
+          <p class="kicker">Act 09</p>
+          <h2>生日愿望签</h2>
+          <p>点一下，抽一张我送给你的生日祝福。</p>
+        </div>
+        <div class="wish glass">
+          <p id="wishText">愿你新的一岁，永远漂亮、自由、被爱包围。</p>
+          <button class="primary" id="drawWish">换一张祝福</button>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="10">
+        <div class="scene-head compact">
+          <p class="kicker">Act 10</p>
+          <h2>写给你的信</h2>
+        </div>
+        <article class="letter glass">
+          <p id="typewriter"></p>
+          <button class="primary" id="startLetter">打开这封信</button>
+        </article>
+      </section>
+
+      <section class="scene" data-scene="11">
+        <div class="final">
+          <p class="kicker">August 15</p>
+          <h2><span>宝宝</span><span>生日快乐</span></h2>
+          <div class="final-heart">❤️</div>
+          <p>未来的每一个生日，我都希望陪你一起过。</p>
+          <div class="stats glass" id="stats"></div>
+          <div class="final-actions">
+            <button class="primary" id="replay">再看一遍</button>
+            <button class="secondary" id="jumpGallery">我们的照片</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="hud">
+      <button class="heart-btn" id="heartTap" aria-label="爱心彩蛋">❤️</button>
+      <button class="music" id="musicBtn" aria-label="播放音乐">
+        <span id="musicState">♪</span>
+      </button>
+    </aside>
+
+    <div class="gesture-tip" id="gestureTip">手机上滑继续 · 电脑滚轮/拖拽预览</div>
+
+    <div class="modal" id="memoryModal" aria-hidden="true">
+      <div class="modal-card glass">
+        <button class="close" id="closeModal" aria-label="关闭">×</button>
+        <p class="kicker">Memory</p>
+        <h3 id="modalTitle"></h3>
+        <p id="modalText"></p>
+      </div>
+    </div>
+
+    <div class="secret-page" id="secretPage" aria-hidden="true">
+      <div class="glass">
+        <p class="kicker">Hidden</p>
+        <h2>你已经解锁男朋友全部的爱 ❤️</h2>
+        <button class="primary" id="closeSecret">收好这份爱</button>
+      </div>
+    </div>
+
+    <audio id="bgm" preload="auto" loop src="./assets/music/tai-cong-ming.mp3"></audio>
+    <script src="./script.js"></script>
+  </body>
+</html>
