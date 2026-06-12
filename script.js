@@ -395,6 +395,28 @@ function initWish() {
   });
 }
 
+function initCake() {
+  const cake = $("#cake");
+  const wish = $("#cakeWish");
+  if (!cake || !wish) return;
+  cake.addEventListener("click", () => {
+    cake.classList.add("is-wished");
+    wish.textContent = "愿望已经替宝宝收好，接下来交给我慢慢实现。";
+    burst(innerWidth / 2, innerHeight * 0.42, "heart");
+  });
+}
+
+function initEnvelope() {
+  const envelope = $("#envelope");
+  if (!envelope) return;
+  envelope.addEventListener("click", () => {
+    envelope.classList.toggle("is-open");
+    if (envelope.classList.contains("is-open")) {
+      burst(innerWidth / 2, innerHeight * 0.45, "spark");
+    }
+  });
+}
+
 function initStats() {
   const now = new Date();
   const day = 24 * 60 * 60 * 1000;
@@ -624,6 +646,8 @@ initMemoryStars();
 initGift();
 initBirthdayTree();
 initWish();
+initCake();
+initEnvelope();
 initLetter();
 initStats();
 initMusic();
