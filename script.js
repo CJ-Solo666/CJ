@@ -270,13 +270,13 @@ function initBirthdayTree() {
       const spiral = u * Math.PI * 2 * 7.2;
       const a = spiral + (Math.random() - 0.5) * 0.36;
       const r = radius * (0.78 + Math.random() * 0.34);
-      addPoint(Math.cos(a) * r, h * treeHeight - 3.5, Math.sin(a) * r, `rgba(255, ${175 + Math.random() * 55}, ${210 + Math.random() * 38}, 0.92)`, 1.7);
+      addPoint(Math.cos(a) * r, 3.5 - h * treeHeight, Math.sin(a) * r, `rgba(255, ${175 + Math.random() * 55}, ${210 + Math.random() * 38}, 0.92)`, 1.7);
     }
     for (let i = 0; i < 420; i++) {
       const h = Math.pow(Math.random(), 1.9);
       const radius = Math.pow(1 - h, 1.1) * 2.9 * Math.sqrt(Math.random());
       const a = Math.random() * Math.PI * 2;
-      addPoint(Math.cos(a) * radius, h * treeHeight - 3.5, Math.sin(a) * radius, `rgba(${210 + Math.random() * 45}, ${205 + Math.random() * 45}, 255, 0.74)`, 1.45);
+      addPoint(Math.cos(a) * radius, 3.5 - h * treeHeight, Math.sin(a) * radius, `rgba(${210 + Math.random() * 45}, ${205 + Math.random() * 45}, 255, 0.74)`, 1.45);
     }
     for (let i = 0; i < 260; i++) {
       const r = 2.9 + Math.random() * 2.5;
@@ -287,7 +287,7 @@ function initBirthdayTree() {
       const t = Math.random() * Math.PI * 2;
       const x = 0.62 * 16 * Math.pow(Math.sin(t), 3) / 16;
       const y = -(0.62 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) / 16);
-      addPoint(x, y - 4.36, (Math.random() - 0.5) * 0.18, "rgba(255,170,205,0.96)", 1.65);
+      addPoint(x, y - 4.58, (Math.random() - 0.5) * 0.18, "rgba(255,170,205,0.96)", 1.9);
     }
     flakes.length = 0;
     for (let i = 0; i < 18; i++) {
@@ -314,7 +314,7 @@ function initBirthdayTree() {
     const scale = Math.min(width, height) * 0.9 / z;
     return {
       x: width / 2 + x * scale,
-      y: height * 0.56 + y * scale,
+      y: height * 0.55 + y * scale,
       d: z,
       s: Math.max(0.7, point.size * (10 / z)),
       color: point.color
